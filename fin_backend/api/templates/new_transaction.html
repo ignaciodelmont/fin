@@ -1,0 +1,22 @@
+<div class="justify-center flex">
+  <form id="add-income-form" class=" flex-col justify-center">
+    <div>
+      <input type="text" placeholder="Name" name="name" class="input input-bordered w-full max-w-xs my-2" />
+    </div>
+    <div>
+      <input type="text" placeholder="Description" name="description" class="input input-bordered w-full max-w-xs my-2" />
+    </div>
+    <div>
+      <input type="number" min="0" step="0.01" placeholder="Amount" name="amount" class="input input-bordered w-full max-w-xs my-2" />
+    </div>
+    <select name="currency" class="select select-ghost w-full max-w-xs mb-2">
+      <option disabled selected>Select Currency </option>
+      <option>ARS</option>
+      <option>USD</option>
+    </select>
+    <div>
+      <input hx-post="/income" hx-ext="json-enc" value="Add Income" type="submit" class="btn" id="add-income"></input>
+      <input hx-post="/expense" hx-ext="json-enc" value="Add Expense"  type="submit" class="btn" id="add-expense"></input>
+    </div>
+  </form>
+</div>

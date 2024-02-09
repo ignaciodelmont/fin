@@ -1,0 +1,39 @@
+enum Currency {
+  USD
+  EUR
+  ARS
+}
+
+"""Date with time (isoformat)"""
+scalar DateTime
+
+"""Decimal (fixed-point)"""
+scalar Decimal
+
+type Expense implements Transaction {
+  id: ID!
+  amount: Decimal!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  currency: Currency!
+}
+
+type Income implements Transaction {
+  id: ID!
+  amount: Decimal!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  currency: Currency!
+}
+
+type Query {
+  transactions: [Transaction!]!
+}
+
+interface Transaction {
+  id: ID!
+  amount: Decimal!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  currency: Currency!
+}

@@ -1,0 +1,34 @@
+<div class="overflow-x-auto">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+	<th>Date</th>
+	<th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+	<th>Amount</th>
+	<th>Currency</th>
+	<th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in transactions %}
+      <tr id="transaction-{{loop.index}}" class="{{'bg-blue-50' if transaction.__class__.__name__ == 'Income' else 'bg-red-50'}} hover">
+        <th>{{loop.index}}</th>
+	<td x-text="$moment('{{transaction.created_at}}').local().format('YYYY/MM/DD');"></td>
+	<td>{{transaction.__class__.__name__}}</td>
+        <td>{{transaction.name}}</td>
+        <td>{{transaction.description}}</td>
+	<td>{{transaction.amount}}</td>
+	<td>{{transaction.currency}}</td>
+	<td><button hx-delete="/transaction" hx-target="#transaction-{{loop.index}}" hx-swap="delete" hx-ext="json-enc" name="id" value="{{transaction.id}}">X</button></td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+

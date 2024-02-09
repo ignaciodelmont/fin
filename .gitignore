@@ -1,0 +1,7 @@
+org/**
+
+# Python
+__pycache__
+
+# Envs
+*.env*
