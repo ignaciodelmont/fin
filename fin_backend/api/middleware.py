@@ -9,6 +9,7 @@ client = dynamodb.DDBFinClient()
 
 async def log_time(request: Request, call_next):
     import time
+
     start_time = time.time()
     response = await call_next(request)
     process_time = time.time() - start_time
@@ -17,7 +18,7 @@ async def log_time(request: Request, call_next):
 
 
 async def load_user(request: Request, call_next):
-    x_user = request.headers.get('x-user')
+    x_user = request.headers.get("x-user")
     logger.debug(f"User: {x_user}")
     user = client.users.get_user(x_user) if x_user else None
     request.state.user = user

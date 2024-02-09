@@ -18,7 +18,13 @@ def _gen_expense_sk(timestamp):
     return f"{timestamp}#EXPENSE"
 
 
-def build_put_income(user: User, amount: Decimal, currency: Currency, name: str, description: Optional[str] = None):
+def build_put_income(
+    user: User,
+    amount: Decimal,
+    currency: Currency,
+    name: str,
+    description: Optional[str] = None,
+):
     now = utils.datetime.now()
     id_ = _gen_income_sk(now)
 
@@ -40,7 +46,13 @@ def build_put_income(user: User, amount: Decimal, currency: Currency, name: str,
     }
 
 
-def build_put_expense(user: User, amount: Decimal, currency: Currency, name: str, description: Optional[str] = None):
+def build_put_expense(
+    user: User,
+    amount: Decimal,
+    currency: Currency,
+    name: str,
+    description: Optional[str] = None,
+):
     now = utils.datetime.now()
     id_ = _gen_expense_sk(now)
 

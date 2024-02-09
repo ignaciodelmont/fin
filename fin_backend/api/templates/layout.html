@@ -2,14 +2,20 @@
 <html data-theme="bumblebee">
   <head>
     <title>Testing</title>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <script src="/static/libs/htmx.min.js"></script>
+    <!-- <script src="https://unpkg.com/htmx.org@1.9.10"></script> -->
+    <!-- <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script> -->
+    <script src="/static/libs/json-enc.js"></script>
     <!-- Alpine Plugins -->
-    <script src="https://unpkg.com/@victoryoalli/alpinejs-moment@1.0.0/dist/moment.min.js" defer></script>
+    <!-- <script src="https://unpkg.com/@victoryoalli/alpinejs-moment@1.0.0/dist/moment.min.js" defer></script> -->
+    <script src="/static/libs/moment.js" defer></script>
     <!-- Alpine Core -->
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="//unpkg.com/alpinejs" defer></script> -->
+    <script src="/static/libs/alpine.js" defer></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="/static/libs/daisy-ui.css" rel="stylesheet" type="text/css" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="/static/libs/tailwind.js"></script>
   </head>
   <body hx-headers='{"x-user": "ignaciodelmont@gmail.com"}'>
     <div class="grid grid-cols-12 justify-center">

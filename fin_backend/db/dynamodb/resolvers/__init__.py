@@ -25,13 +25,31 @@ class TransactionsResolvers:
     def __init__(self, client):
         self.client = client
 
-    def add_income(self, user: User, amount: Decimal, currency: Currency, name: str, description: Optional[str] = None) -> Income:
-        request = transactions_rb.build_put_income(user, amount, currency, name, description)
+    def add_income(
+        self,
+        user: User,
+        amount: Decimal,
+        currency: Currency,
+        name: str,
+        description: Optional[str] = None,
+    ) -> Income:
+        request = transactions_rb.build_put_income(
+            user, amount, currency, name, description
+        )
         response = self.client.put_item(request)
         return Income(**response)
 
-    def add_expense(self, user: User, amount: Decimal, currency: Currency, name: str, description: Optional[str] = None) -> Expense:
-        request = transactions_rb.build_put_expense(user, amount, currency, name, description)
+    def add_expense(
+        self,
+        user: User,
+        amount: Decimal,
+        currency: Currency,
+        name: str,
+        description: Optional[str] = None,
+    ) -> Expense:
+        request = transactions_rb.build_put_expense(
+            user, amount, currency, name, description
+        )
         response = self.client.put_item(request)
         return Expense(**response)
 
@@ -40,9 +58,11 @@ class TransactionsResolvers:
         response = self.client.query(request)
 
         def is_income(item):
-            return 'income' in item["sk"].lower()
+            return "income" in item["sk"].lower()
 
-        return [Income(**item) if is_income(item) else Expense(**item) for item in response]
+        return [
+            Income(**item) if is_income(item) else Expense(**item) for item in response
+        ]
 
     def delete_transaction(self, user: User, transaction_id: str):
         request = transactions_rb.build_delete_transaction(user, transaction_id)
