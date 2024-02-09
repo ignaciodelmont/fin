@@ -1,5 +1,5 @@
 from strawberry.extensions import SchemaExtension
-from fin_backend.db.dynamodb import DDBFinClient
+from fin.db.dynamodb import DDBFinClient
 
 
 class BadRequestError(RuntimeError):

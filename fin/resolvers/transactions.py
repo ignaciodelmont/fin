@@ -1,4 +1,4 @@
-from fin_backend.db.dynamodb import DDBFinClient
+from fin.db.dynamodb import DDBFinClient
 
 
 def resolve_add_income(db: DDBFinClient, user, amount, currency, name, description):

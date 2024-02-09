@@ -1,4 +1,4 @@
-from fin_backend.schema import schema
+from fin.schema import schema
 
 
 class TestContext(dict):

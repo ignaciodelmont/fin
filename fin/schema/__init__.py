@@ -3,10 +3,10 @@ from enum import Enum
 from typing import List, Optional
 import decimal
 import datetime
-from fin_backend.schema.extensions import DynamoDBExtension
-from fin_backend.resolvers import users as users_resolvers
-from fin_backend.resolvers import transactions as transactions_resolvers
-from fin_backend.utils import mapping as mp
+from fin.schema.extensions import DynamoDBExtension
+from fin.resolvers import users as users_resolvers
+from fin.resolvers import transactions as transactions_resolvers
+from fin.utils import mapping as mp
 from .scalars import DateTimeCustom
 
 #

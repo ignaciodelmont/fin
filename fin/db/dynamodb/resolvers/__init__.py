@@ -1,6 +1,6 @@
 from decimal import Decimal
-from fin_backend.db.dynamodb.request_building import users as users_rb
-from fin_backend.db.dynamodb.request_building import transactions as transactions_rb
+from fin.db.dynamodb.request_building import users as users_rb
+from fin.db.dynamodb.request_building import transactions as transactions_rb
 from ..models.users import User
 from ..models.transactions import Currency, Income, Expense, Transaction
 from typing import Optional, List

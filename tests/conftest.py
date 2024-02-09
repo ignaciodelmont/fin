@@ -1,9 +1,9 @@
 import pytest
-from fin_backend import utils as fb_utils
+from fin import utils as fb_utils
 import datetime as dt
-from fin_backend import db
-from fin_backend import configs
-from fin_backend.schema import extensions
+from fin import db
+from fin import configs
+from fin.schema import extensions
 from tests import utils
 
 

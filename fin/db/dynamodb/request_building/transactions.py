@@ -2,7 +2,7 @@ from ..models.users import User
 from ..models.transactions import Income, Expense, Currency
 from . import common as com
 from decimal import Decimal
-from fin_backend import utils
+from fin import utils
 from typing import Optional
 
 

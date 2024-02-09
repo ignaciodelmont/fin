@@ -1,5 +1,5 @@
 import boto3
-from fin_backend import configs
+from fin import configs
 from ..dynamodb.resolvers import UsersResolvers, TransactionsResolvers
 
 

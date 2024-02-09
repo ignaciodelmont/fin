@@ -1,5 +1,5 @@
 from ..request_building import common as com
-from fin_backend.utils import datetime as dt, ids
+from fin.utils import datetime as dt, ids
 from ..models import users
 
 

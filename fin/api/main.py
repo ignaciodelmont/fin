@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 import middleware
 from typing import Optional
-from fin_backend.resolvers import transactions as rt
+from fin.resolvers import transactions as rt
 from pydantic import BaseModel
 from enum import Enum
 import logging

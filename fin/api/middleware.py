@@ -1,5 +1,5 @@
 from fastapi import Request
-from fin_backend.db import dynamodb
+from fin.db import dynamodb
 import logging
 
 logger = logging.getLogger("middlware")
