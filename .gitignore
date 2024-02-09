@@ -9,3 +9,6 @@ __pycache__
 
 # Libs
 libs/
+
+# Markdown
+.markdown-preview.html
