@@ -6,7 +6,7 @@ import datetime
 from fin.schema.extensions import DynamoDBExtension
 from fin.resolvers import users as users_resolvers
 from fin.resolvers import transactions as transactions_resolvers
-from fin.utils import mapping as mp
+from .utils import mapping as mp
 from .scalars import DateTimeCustom
 
 #
