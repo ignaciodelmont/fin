@@ -4,7 +4,7 @@ import datetime as dt
 from fin import db
 from fin import configs
 from fin.schema import extensions
-from tests import utils
+from tests.schema import utils
 
 
 @pytest.fixture(autouse=True)

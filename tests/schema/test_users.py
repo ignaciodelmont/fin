@@ -1,4 +1,4 @@
-import tests.gql_queries as q
+from . import gql_queries as q
 
 
 def test_add_user(execute, snapshot):
