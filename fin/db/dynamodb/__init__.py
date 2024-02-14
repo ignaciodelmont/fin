@@ -1,6 +1,6 @@
 import boto3
 from fin import configs
-from ..dynamodb.resolvers import UsersResolvers, TransactionsResolvers
+from ..dynamodb.resolvers import UsersResolvers, TransactionsResolvers, LabelsResolvers
 
 
 class DDBClientWrapper:
@@ -56,3 +56,4 @@ class DDBFinClient:
         )
         self.users = UsersResolvers(self.client)
         self.transactions = TransactionsResolvers(self.client)
+        self.labels = LabelsResolvers(self.client)

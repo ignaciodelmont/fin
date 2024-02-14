@@ -18,3 +18,8 @@ class NewTransactionDTO(BaseModel):
 
 class RemoveTransactionDTO(BaseModel):
     id: str
+
+
+class NewLabelDTO(BaseModel):
+    name: str
+    description: Optional[str]
