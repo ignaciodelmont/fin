@@ -17,8 +17,10 @@
 	<option>ARS</option>
 	<option>USD</option>
       </select>
-      <select name="user-labels" class="select select-ghost w-full max-w-xs mb-2" hx-get="/labels">
-      </select>
+      <div>
+	<select name="labels" class="select select-ghost w-full max-w-xs mb-2" hx-get="/labels" hx-trigger="click once" multiple>
+	</select>
+      </div>
       <div>
 	<input hx-post="/income" hx-ext="json-enc" value="Add Income" type="submit" class="btn" id="add-income"></input>
 	<input hx-post="/expense" hx-ext="json-enc" value="Add Expense"  type="submit" class="btn" id="add-expense"></input>

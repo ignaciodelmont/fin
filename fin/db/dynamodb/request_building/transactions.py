@@ -3,7 +3,7 @@ from ..models.transactions import Income, Expense, Currency
 from . import common as com
 from decimal import Decimal
 from fin import utils
-from typing import Optional
+from typing import Optional, List
 
 
 def _gen_transaction_pk(user: User):
@@ -24,6 +24,7 @@ def build_put_income(
     currency: Currency,
     name: str,
     description: Optional[str] = None,
+    label_ids: Optional[List[str]] = None,
 ):
     now = utils.datetime.now()
     id_ = _gen_income_sk(now)
@@ -41,6 +42,7 @@ def build_put_income(
                 currency=currency,
                 name=name,
                 description=description,
+                label_ids=label_ids,
             )
         )
     }
@@ -52,6 +54,7 @@ def build_put_expense(
     currency: Currency,
     name: str,
     description: Optional[str] = None,
+    label_ids: Optional[List[str]] = None,
 ):
     now = utils.datetime.now()
     id_ = _gen_expense_sk(now)
@@ -69,6 +72,7 @@ def build_put_expense(
                 currency=currency,
                 name=name,
                 description=description,
+                label_ids=label_ids,
             )
         )
     }

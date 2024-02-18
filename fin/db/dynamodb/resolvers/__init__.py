@@ -34,9 +34,10 @@ class TransactionsResolvers:
         currency: Currency,
         name: str,
         description: Optional[str] = None,
+        label_ids: Optional[List[str]] = None,
     ) -> Income:
         request = transactions_rb.build_put_income(
-            user, amount, currency, name, description
+            user, amount, currency, name, description, label_ids
         )
         response = self.client.put_item(request)
         return Income(**response)
@@ -48,9 +49,10 @@ class TransactionsResolvers:
         currency: Currency,
         name: str,
         description: Optional[str] = None,
+        label_ids: Optional[List[str]] = None,
     ) -> Expense:
         request = transactions_rb.build_put_expense(
-            user, amount, currency, name, description
+            user, amount, currency, name, description, label_ids
         )
         response = self.client.put_item(request)
         return Expense(**response)
@@ -80,7 +82,9 @@ class LabelsResolvers:
         return Label(**self.client.put_item(request))
 
     def list_labels(self, user: User):
-        pass
+        request = labels_rb.build_query_labels(user)
+        response = self.client.query(request)
+        return [Label(**item) for item in response]
 
     def delete_label(self, user: User, label_id: str):
         pass

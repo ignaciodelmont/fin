@@ -14,6 +14,7 @@ class NewTransactionDTO(BaseModel):
     amount: Decimal
     description: Optional[str]
     currency: Currency
+    labels: Optional[list[str]]
 
 
 class RemoveTransactionDTO(BaseModel):

@@ -1,14 +1,11 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 import middleware
-from typing import Optional
 from fin.resolvers import transactions as rt
 from fin.resolvers import labels as rl
-from pydantic import BaseModel
-from enum import Enum
 import logging
 from fastapi.staticfiles import StaticFiles
-from models import NewTransactionDTO, RemoveTransactionDTO, Currency, NewLabelDTO
+from models import NewTransactionDTO, RemoveTransactionDTO, NewLabelDTO
 import json
 
 logging.basicConfig(level=logging.INFO)
@@ -46,6 +43,7 @@ async def add_income(request: Request, data: NewTransactionDTO):
         data.currency,
         data.name,
         data.description,
+        data.labels,
     )
 
     response = templates.TemplateResponse(
@@ -70,6 +68,7 @@ async def add_expense(request: Request, data: NewTransactionDTO):
         data.currency,
         data.name,
         data.description,
+        data.labels,
     )
 
     response = templates.TemplateResponse(
@@ -92,8 +91,15 @@ async def delete_transaction(request: Request, data: RemoveTransactionDTO):
 
 @app.post("/label")
 async def add_label(request: Request, data: NewLabelDTO):
-    new_label = rl.resolve_add_label(
+    rl.resolve_add_label(
         request.state.db, request.state.user, data.name, data.description
     )
-    print("NEW LABEL", new_label)
     return
+
+
+@app.get("/labels")
+async def labels(request: Request):
+    labels = rl.resolve_labels(request.state.db, request.state.user)
+    return templates.TemplateResponse(
+        "labels.html", {"request": request, "labels": labels}
+    )

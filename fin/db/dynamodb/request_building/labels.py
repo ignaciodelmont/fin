@@ -13,14 +13,19 @@ def _gen_sk_label():
 
 def build_put_label(user, name, description):
     now = utils.datetime.now()
-
+    sk = _gen_sk_label()
     return com.build_request_new_item(
         Label(
             pk=_gen_pk_label(user),
-            sk=_gen_sk_label(),
+            sk=sk,
+            id=sk,
             created_at=now,
             modified_at=now,
             name=name,
             description=description
         )
     )
+
+
+def build_query_labels(user):
+    return com.build_request_query_items_by_pk(_gen_pk_label(user))
