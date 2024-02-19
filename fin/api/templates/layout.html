@@ -24,9 +24,16 @@
 	</div>
       <div class="col-span-9">
 	<div class="flex pb-2 justify-center">
-	  <button class="btn" id="load-transactions" hx-trigger="click" hx-get="/transactions" hx-target="#transactions">Load transactions</button>
+	  <form id="filter-form" hx-params="*" hx-get="/transactions" hx-target="#transactions">
+	    <div>
+	      <input type="text" name="name" placeholder="Name" class="input input-bordered" />
+	    </div>
+	    <div>
+	      <button class="btn" id="load-transactions" >Load Transactions</button>
+	    </div>
+	  </form>
 	</div>
-	<div id="transactions" class="w-100"></div>
+	<div id="transactions" class="w-100" hx-trigger="load" hx-get="/transactions"></div>
       </div>
     </div>
   </body>

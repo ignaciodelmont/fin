@@ -18,7 +18,7 @@
 	<option>USD</option>
       </select>
       <div>
-	<select name="labels" class="select select-ghost w-full max-w-xs mb-2" hx-get="/labels" hx-trigger="click once" multiple>
+	<select id="user-labels" name="labels" class="select select-bordered w-full max-w-xs mb-2" hx-get="/labels" hx-trigger="load" multiple>
 	</select>
       </div>
       <div>

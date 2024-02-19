@@ -27,7 +27,8 @@ async def root(request: Request):
 
 
 @app.get("/transactions")
-async def transactions(request: Request):
+async def transactions(request: Request, name: str = None):
+    print("Name", name)
     transactions = rt.resolve_transactions(request.state.db, request.state.user)
     return templates.TemplateResponse(
         "transactions.html", {"request": request, "transactions": transactions}
@@ -91,15 +92,27 @@ async def delete_transaction(request: Request, data: RemoveTransactionDTO):
 
 @app.post("/label")
 async def add_label(request: Request, data: NewLabelDTO):
-    rl.resolve_add_label(
+    label = rl.resolve_add_label(
         request.state.db, request.state.user, data.name, data.description
     )
-    return
+
+    response = templates.TemplateResponse(
+        "labels.html", {"request": request, "labels": [label]}
+    )
+
+    additional_headers = {
+        "hx-location": json.dumps({"path": "/labels", "target": "#user-labels"})
+    }
+
+    response.headers.update(additional_headers)
+
+    return response
 
 
 @app.get("/labels")
 async def labels(request: Request):
     labels = rl.resolve_labels(request.state.db, request.state.user)
+
     return templates.TemplateResponse(
         "labels.html", {"request": request, "labels": labels}
     )

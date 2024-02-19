@@ -1,5 +1,3 @@
-{% import "badges.html" as badges %}
-
 {% for label in labels %}
-<option id="{{label.id}}" value="{{label.id}}">{{badges.badge(label.name)}}</option>
+<option class="badge badge-neutral m-1" id="{{label.id}}" value="{{label.id}}">{{label.name}}</option>
 {% endfor %}
