@@ -53,13 +53,23 @@ def compute_transaction_stats(
 
         return grouped
 
-    def _compute_transaction_stats(currency: str, transactions: List[Transaction]) -> TransactionStats:
+    def _compute_transaction_stats(
+        currency: str, transactions: List[Transaction]
+    ) -> TransactionStats:
         total_income = sum([t.amount for t in transactions if isinstance(t, Income)])
         total_expense = sum([t.amount for t in transactions if isinstance(t, Expense)])
         balance = total_income - total_expense
-        return TransactionStats(currency=currency, balance=balance, total_in=total_income, total_out=total_expense)
+        return TransactionStats(
+            currency=currency,
+            balance=balance,
+            total_in=total_income,
+            total_out=total_expense,
+        )
 
-    return map(lambda kv: _compute_transaction_stats(*kv), _group_by_currency(transactions).items())
+    return map(
+        lambda kv: _compute_transaction_stats(*kv),
+        _group_by_currency(transactions).items(),
+    )
 
 
 def resolve_delete_transaction(db: DDBFinClient, user, transaction_id):

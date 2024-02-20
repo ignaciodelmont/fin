@@ -33,7 +33,12 @@ async def transactions(request: Request, name: str = None):
     transaction_stats = rt.compute_transaction_stats(transactions)
 
     return templates.TemplateResponse(
-        "transactions.html", {"request": request, "transactions": transactions, "transaction_stats": transaction_stats}
+        "transactions.html",
+        {
+            "request": request,
+            "transactions": transactions,
+            "transaction_stats": transaction_stats,
+        },
     )
 
 

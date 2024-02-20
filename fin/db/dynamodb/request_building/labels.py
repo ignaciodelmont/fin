@@ -22,7 +22,7 @@ def build_put_label(user, name, description):
             created_at=now,
             modified_at=now,
             name=name,
-            description=description
+            description=description,
         )
     )
 
