@@ -27,3 +27,10 @@ class Income(Transaction):
 
 class Expense(Transaction):
     pass
+
+
+class TransactionStats(BaseModel):
+    currency: str
+    total_in: float
+    total_out: float
+    balance: float

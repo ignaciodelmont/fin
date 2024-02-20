@@ -28,10 +28,12 @@ async def root(request: Request):
 
 @app.get("/transactions")
 async def transactions(request: Request, name: str = None):
-    print("Name", name)
     transactions = rt.resolve_transactions(request.state.db, request.state.user)
+
+    transaction_stats = rt.compute_transaction_stats(transactions)
+
     return templates.TemplateResponse(
-        "transactions.html", {"request": request, "transactions": transactions}
+        "transactions.html", {"request": request, "transactions": transactions, "transaction_stats": transaction_stats}
     )
 
 
@@ -51,12 +53,6 @@ async def add_income(request: Request, data: NewTransactionDTO):
         "transactions.html", {"request": request, "transactions": [new_income]}
     )
 
-    additional_headers = {
-        "hx-location": json.dumps({"path": "/transactions", "target": "#transactions"})
-    }
-
-    response.headers.update(additional_headers)
-
     return response
 
 
@@ -75,12 +71,6 @@ async def add_expense(request: Request, data: NewTransactionDTO):
     response = templates.TemplateResponse(
         "transactions.html", {"request": request, "transactions": [new_expense]}
     )
-
-    additional_headers = {
-        "hx-location": json.dumps({"path": "/transactions", "target": "#transactions"})
-    }
-
-    response.headers.update(additional_headers)
 
     return response
 

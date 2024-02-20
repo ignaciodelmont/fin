@@ -1,9 +1,8 @@
 {% import 'badges.html' as badges %}
 
 <div class="overflow-x-auto">
-  <h3>Transactions</h3>
+  <p>Transactions</p>
   <table class="table">
-    <!-- head -->
     <thead>
       <tr>
         <th></th>
@@ -19,14 +18,14 @@
     </thead>
     <tbody>
       {% for transaction in transactions %}
-      <tr id="transaction-{{loop.index}}" class="{{'bg-blue-50' if transaction.__class__.__name__ == 'Income' else 'bg-red-50'}} hover">
+      <tr id="transaction-{{loop.index}}" class="{{'bg-blue-100' if transaction.__class__.__name__ == 'Income' else 'bg-red-50'}} hover">
         <th>{{loop.index}}</th>
 	<td x-text="$moment('{{transaction.created_at}}').local().format('YYYY/MM/DD');"></td>
 	<td>{{transaction.__class__.__name__}}</td>
         <td>{{transaction.name}}</td>
         <td>{{transaction.description}}</td>
-	<td>{{transaction.amount}}</td>
-	<td>{{transaction.currency}}</td>
+	<td class="amount">{{transaction.amount}}</td>
+	<td class="currency">{{transaction.currency}}</td>
 	<td>
 	 {% for label in transaction.labels %}
 	 {{badges.badge(label.name)}}
@@ -37,4 +36,20 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <p class="mt-10">Transaction Stats</p>
+  <div class="flex flex-row justify-around">
+    {% for ts in transaction_stats %}
+    <div class="w-100 shadow p-2">
+      <div>{{ts.currency}}</div>
+      <hr>
+      <div>
+	<p>in: <span class="text-green-500">{{ts.total_in | round(2, 'common')}}</span> </p>
+	<p>out: <span class="text-red-500">{{ts.total_out | round(2, 'common')}}</span></p>
+	<p>balance: {{ts.balance | round(2, 'common')}}</p>
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>

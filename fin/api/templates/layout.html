@@ -17,15 +17,15 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="/static/libs/tailwind.js"></script>
   </head>
-  <body hx-headers='{"x-user": "ignaciodelmont@gmail.com"}'>
+  <body hx-headers='{"x-user": "ignaciodelmont@gmail.com"}' class="font-mono">
     <div class="grid grid-cols-12 justify-center">
       <div class="col-span-3">
 	{% include "actions.html" %}
 	</div>
       <div class="col-span-9">
 	<div class="flex pb-2 justify-center">
-	  <form id="filter-form" hx-params="*" hx-get="/transactions" hx-target="#transactions">
-	    <div>
+	  <form class="flex flex-row m-5" id="filter-form" hx-params="*" hx-get="/transactions" hx-target="#transactions" hx-trigger="htmx:afterRequest from:#add-income, htmx:afterRequest from:#add-expense, htmx:afterRequest from:#transactions">
+	    <div class="mr-2">
 	      <input type="text" name="name" placeholder="Name" class="input input-bordered" />
 	    </div>
 	    <div>
