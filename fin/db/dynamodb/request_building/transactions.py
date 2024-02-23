@@ -78,8 +78,28 @@ def build_put_expense(
     }
 
 
-def build_query_transactions(user: User):
-    return com.build_request_query_items_by_pk(_gen_transaction_pk(user))
+def build_query_transactions(user: User, filters):
+    base_req = com.build_request_query_items_by_pk(_gen_transaction_pk(user))
+    start_date = filters.start_date
+    end_date = filters.end_date
+
+    if start_date and end_date:
+        condition_expression = com.between("sk", ":sk_start", ":sk_end")
+        expression_attribute_values = {":sk_start": start_date, ":sk_end": end_date}
+    elif start_date:
+        condition_expression = com.gte("sk", ":sk_start")
+        expression_attribute_values = {":sk_start": start_date}
+    elif end_date:
+        condition_expression = com.lt("sk", ":sk_end")
+        expression_attribute_values = {":sk_end": end_date}
+    else:
+        condition_expression = None
+        expression_attribute_values = None
+
+    return com.add_expression_attribute_values(
+        com.add_key_condition_expression(base_req, condition_expression),
+        expression_attribute_values,
+    )
 
 
 def build_delete_transaction(user: User, transaction_id: str):

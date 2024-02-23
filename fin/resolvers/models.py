@@ -34,3 +34,8 @@ class TransactionStats(BaseModel):
     total_in: float
     total_out: float
     balance: float
+
+
+class TransactionFilters(BaseModel):
+    start_date: Optional[str]
+    end_date: Optional[str]

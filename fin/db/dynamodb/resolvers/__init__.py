@@ -57,8 +57,8 @@ class TransactionsResolvers:
         response = self.client.put_item(request)
         return Expense(**response)
 
-    def list_transactions(self, user: User) -> List[Transaction]:
-        request = transactions_rb.build_query_transactions(user)
+    def list_transactions(self, user: User, filters) -> List[Transaction]:
+        request = transactions_rb.build_query_transactions(user, filters)
         response = self.client.query(request)
 
         def is_income(item):

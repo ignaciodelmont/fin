@@ -6,6 +6,7 @@ from fin.resolvers import labels as rl
 import logging
 from fastapi.staticfiles import StaticFiles
 from models import NewTransactionDTO, RemoveTransactionDTO, NewLabelDTO
+from fin.resolvers.models import TransactionFilters
 import json
 
 logging.basicConfig(level=logging.INFO)
@@ -27,9 +28,8 @@ async def root(request: Request):
 
 
 @app.get("/transactions")
-async def transactions(request: Request, name: str = None):
-    transactions = rt.resolve_transactions(request.state.db, request.state.user)
-
+async def transactions(request: Request, start_date: str = None, end_date: str = None):
+    transactions = rt.resolve_transactions(request.state.db, request.state.user, TransactionFilters(start_date=start_date, end_date=end_date))
     transaction_stats = rt.compute_transaction_stats(transactions)
 
     return templates.TemplateResponse(

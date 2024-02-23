@@ -1,7 +1,7 @@
 from fin.db.dynamodb import DDBFinClient
 from typing import List
 from ..resolvers import labels as rlabels
-from .models import Transaction, Income, Expense, TransactionStats
+from .models import Transaction, Income, Expense, TransactionStats, TransactionFilters
 
 
 def resolve_add_income(
@@ -35,8 +35,8 @@ def _map_transaction(transaction_from_db, labels_by_id) -> Transaction:
     return transaction
 
 
-def resolve_transactions(db: DDBFinClient, user) -> List[Transaction]:
-    transactions = db.transactions.list_transactions(user)
+def resolve_transactions(db: DDBFinClient, user, filters: TransactionFilters) -> List[Transaction]:
+    transactions = db.transactions.list_transactions(user, filters)
     labels = rlabels.resolve_labels(db, user)
     labels_by_id = {label.id: label for label in labels}
 
