@@ -13,13 +13,13 @@ async def log_time(request: Request, call_next):
     start_time = time.time()
     response = await call_next(request)
     process_time = time.time() - start_time
-    logger.debug(f"Processed request: {request.url.path} in {process_time} seconds")
+    logger.info(f"Processed request: {request.url.path} in {process_time} seconds")
     return response
 
 
 async def load_user(request: Request, call_next):
     x_user = request.headers.get("x-user")
-    logger.debug(f"User: {x_user}")
+    logger.info(f"User: {x_user}")
     user = client.users.get_user(x_user) if x_user else None
     request.state.user = user
     request.state.db = client

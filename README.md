@@ -21,3 +21,4 @@ by leverageing a a REST (hopefully close to RESTful) API.
   - Add/Remove Labels
   - Add/Remove Labels on Transactions
   - Use an openapi to suggest Labels on Transactions
+  - Create login page and move away from the hardcoded top-level header

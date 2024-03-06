@@ -1,32 +1,25 @@
 <!DOCTYPE html>
-<html data-theme="bumblebee">
+<html data-theme="wireframe">
   <head>
-    <title>Testing</title>
+    <title>FIN</title>
     <script src="/static/libs/htmx.min.js"></script>
-    <!-- <script src="https://unpkg.com/htmx.org@1.9.10"></script> -->
-    <!-- <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script> -->
     <script src="/static/libs/json-enc.js"></script>
     <!-- Alpine Plugins -->
-    <!-- <script src="https://unpkg.com/@victoryoalli/alpinejs-moment@1.0.0/dist/moment.min.js" defer></script> -->
     <script src="/static/libs/moment.js" defer></script>
     <!-- Alpine Core -->
-    <!-- <script src="//unpkg.com/alpinejs" defer></script> -->
     <script src="/static/libs/alpine.js" defer></script>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css" /> -->
     <link href="/static/libs/daisy-ui.css" rel="stylesheet" type="text/css" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="/static/libs/tailwind.js"></script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.3.0/date-picker.min.js"></script>
+    <script src="/static/scripts/htmxExtras.js"></script>
   </head>
-  <body hx-headers='{"x-user": "ignaciodelmont@gmail.com"}'>
+  <body hx-headers='{"x-user": "ignaciodelmont@gmail.com"}' class="font-mono">
     <div class="grid grid-cols-12 justify-center">
       <div class="col-span-3">
-	{% include "new_transaction.html" %}
+	{% include "actions.html" %}
 	</div>
       <div class="col-span-9">
-	<div class="flex pb-2 justify-center">
-	  <button class="btn" id="load-transactions" hx-trigger="click" hx-get="/transactions" hx-target="#transactions">Load transactions</button>
-	</div>
-	<div id="transactions" class="w-100"></div>
+	{% include "transactions-page.html" %}
       </div>
     </div>
   </body>

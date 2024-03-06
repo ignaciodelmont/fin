@@ -70,7 +70,6 @@ class Query:
         transactions = transactions_resolvers.resolve_transactions(
             info.context["db"], user
         )
-        print("Transactions", transactions)
         return [
             mp.map_res_with_type(
                 Income if t.transaction_type() == "income" else Expense, t

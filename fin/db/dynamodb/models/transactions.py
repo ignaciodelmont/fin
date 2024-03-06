@@ -19,9 +19,9 @@ class Transaction(BaseDDB):
     currency: Currency
     name: str
     description: Optional[str] = None
+    label_ids: Optional[list[str]] = None
 
     def transaction_type(self):
-        print("sk", self.sk)
         return self.sk.split("#")[0]
 
 

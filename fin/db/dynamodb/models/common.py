@@ -7,6 +7,7 @@ class BaseDDB:
     sk: str
     created_at: str
     modified_at: str
+    id: str
 
     def __getitem__(self, item):
         return getattr(self, item)
