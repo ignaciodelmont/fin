@@ -1,8 +1,8 @@
 {% import 'badges.html' as badges %}
 
-<div class="overflow-x-auto">
+<div class="overflow-x-auto h-96">
   <p>Transactions</p>
-  <table class="table">
+  <table class="table table-auto overflow-scroll">
     <thead>
       <tr>
         <th></th>
@@ -16,9 +16,9 @@
 	<th>Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="transaction-list">
       {% for transaction in transactions %}
-      <tr id="transaction-{{loop.index}}" class="{{'bg-blue-100' if transaction.__class__.__name__ == 'Income' else 'bg-red-50'}} hover">
+      <tr id="transaction-{{loop.index}}" class="{{'bg-blue-100' if transaction.__class__.__name__ == 'Income' else 'bg-red-50'}} hover transaction-edit">
         <th>{{loop.index}}</th>
 	<td x-text="$moment('{{transaction.created_at}}').local().format('YYYY/MM/DD');"></td>
 	<td>{{transaction.__class__.__name__}}</td>
@@ -31,12 +31,16 @@
 	 {{badges.badge(label.name)}}
 	 {% endfor %}
 	</td>
-	<td><button hx-delete="/transaction" hx-target="#transaction-{{loop.index}}" hx-swap="delete" hx-ext="json-enc" name="id" value="{{transaction.id}}">X</button></td>
+	<td class="edit-transaction"><button hx-delete="/transaction"  hx-target="#transaction-{{loop.index}}" hx-swap="delete" hx-ext="json-enc" name="id" value="{{transaction.id}}">X</button></td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
+
+</div>
+
+<div>
   <p class="mt-10">Transaction Stats</p>
   <div class="flex flex-row justify-around">
     {% for ts in transaction_stats %}

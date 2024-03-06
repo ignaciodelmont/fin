@@ -1,5 +1,6 @@
 // htmxs doesn't emit the formData event, so I have to intercept the request and add the form data as request parameters
 // stolen from https://github.com/bigskysoftware/htmx/issues/1323
+
 document.addEventListener('htmx:configRequest', (event) => {
     if (event.target.tagName === "FORM") {
 	const formData = new FormData(event.target);
@@ -20,3 +21,4 @@ document.addEventListener('htmx:configRequest', (event) => {
 	}
     }
 });
+

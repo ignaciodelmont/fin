@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html data-theme="bumblebee">
+<html data-theme="wireframe">
   <head>
-    <title>Testing</title>
+    <title>FIN</title>
     <script src="/static/libs/htmx.min.js"></script>
-    <!-- <script src="https://unpkg.com/htmx.org@1.9.10"></script> -->
-    <!-- <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script> -->
     <script src="/static/libs/json-enc.js"></script>
     <!-- Alpine Plugins -->
-    <!-- <script src="https://unpkg.com/@victoryoalli/alpinejs-moment@1.0.0/dist/moment.min.js" defer></script> -->
     <script src="/static/libs/moment.js" defer></script>
     <!-- Alpine Core -->
-    <!-- <script src="//unpkg.com/alpinejs" defer></script> -->
     <script src="/static/libs/alpine.js" defer></script>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css" /> -->
     <link href="/static/libs/daisy-ui.css" rel="stylesheet" type="text/css" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="/static/libs/tailwind.js"></script>
     <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.3.0/date-picker.min.js"></script>
     <script src="/static/scripts/htmxExtras.js"></script>
@@ -25,34 +19,7 @@
 	{% include "actions.html" %}
 	</div>
       <div class="col-span-9">
-	<div class="flex pb-2 justify-center">
-	  <form class="flex flex-row m-5" id="filter-form" hx-params="*" hx-get="/transactions" hx-target="#transactions">
-	    <div class="mr-2 flex flex-row">
-	      <cds-date-picker name="start_date" value="">
-		<cds-date-picker-input
-		  id="start-data"
-		  kind="from"
-		  label-text="Start Date"
-		  placeholder="mm/dd/yyyy"
-		  size="lg">
-		</cds-date-picker-input>
-	      </cds-date-picker>
-	      <cds-date-picker name="end_date" value="">
-		<cds-date-picker-input
-		  id="end-date"
-		  kind="from"
-		  label-text="End Date"
-		  placeholder="mm/dd/yyyy"
-		  size="lg">
-		</cds-date-picker-input>
-	      </cds-date-picker>
-	    </div>
-	    <div>
-	      <button type="submit" class="btn" id="load-transactions" >Load Transactions</button>
-	    </div>
-	  </form>
-	</div>
-	<div id="transactions" class="w-100" hx-trigger="load" hx-get="/transactions"></div>
+	{% include "transactions-page.html" %}
       </div>
     </div>
   </body>
