@@ -1,28 +1,36 @@
-<div class="flex pb-2 justify-center">
-  <form class="flex flex-row m-5" id="filter-form"  hx-get="/transactions" hx-target="#transactions" hx-trigger="submit, transactionAdded from:body, transactionDeleted from:body">
-    <div class="mr-2 flex flex-row">
-      <cds-date-picker name="start_date" value="">
-	<cds-date-picker-input
-	  id="start-data"
-	  kind="from"
-	  label-text="Start Date"
-	  placeholder="mm/dd/yyyy"
-	  size="lg">
-	</cds-date-picker-input>
-      </cds-date-picker>
-      <cds-date-picker name="end_date" value="">
-	<cds-date-picker-input
-	  id="end-date"
-	  kind="from"
-	  label-text="End Date"
-	  placeholder="mm/dd/yyyy"
-	  size="lg">
-	</cds-date-picker-input>
-      </cds-date-picker>
+<div class="grid grid-cols-12 justify-center">
+  <div class="col-span-3">
+    {% include "actions.html" %}
+  </div>
+  <div class="col-span-9">
+    <div class="flex pb-2 justify-center">
+      <form class="flex flex-row m-5" id="filter-form"  hx-get="/transactions" hx-target="#transactions" hx-trigger="submit, transactionAdded from:body, transactionDeleted from:body">
+	<div class="mr-2 flex flex-row">
+	  <cds-date-picker id="start-date" name="start-date" value="" x-value="data" x-init="setStartDate()" date-format="Y/m/d">
+	    <cds-date-picker-input
+	      id="start-date-input"
+	      kind="from"
+	      label-text="Start Date"
+	      placeholder="yyyy/mm/dd"
+	      size="lg">
+	    </cds-date-picker-input>
+	  </cds-date-picker>
+	  <cds-date-picker id="end-date" name="end-date" value="" date-format="Y/m/d">
+	    <cds-date-picker-input
+	      id="end-date-input"
+	      kind="from"
+	      label-text="End Date"
+	      placeholder="yyyy/mm/dd"
+	      size="lg">
+	    </cds-date-picker-input>
+	  </cds-date-picker>
+	</div>
+	<div>
+	  <button type="submit" class="btn" id="load-transactions" >Load Transactions</button>
+	</div>
+      </form>
     </div>
-    <div>
-      <button type="submit" class="btn" id="load-transactions" >Load Transactions</button>
-    </div>
-  </form>
+    <!-- <div id="transactions" class="w-100" hx-trigger="load" hx-get="/transactions"></div> -->
+    <div id="transactions" class="w-100"></div>
+  </div>
 </div>
-<div id="transactions" class="w-100" hx-trigger="load" hx-get="/transactions"></div>

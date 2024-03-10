@@ -1,31 +1,15 @@
-from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import FileResponse
-import middleware
+from fastapi import Request
 from fin.resolvers import transactions as rt
 from fin.resolvers import labels as rl
 import logging
-from fastapi.staticfiles import StaticFiles
-from models import NewTransactionDTO, RemoveTransactionDTO, NewLabelDTO
+from .models import NewTransactionDTO, RemoveTransactionDTO, NewLabelDTO
 from fin.resolvers.models import TransactionFilters
 import json
+from .app import app, templates
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("api")
-
-app = FastAPI()
-
-templates = Jinja2Templates(directory="templates")
-
-app.middleware("http")(middleware.log_time)
-app.middleware("http")(middleware.load_user)
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    return FileResponse("./static/images/favicon.ico")
 
 
 @app.get("/")
@@ -135,3 +119,9 @@ async def labels(request: Request):
     return templates.TemplateResponse(
         "labels.html", {"request": request, "labels": labels}
     )
+
+
+def serve():
+    import uvicorn
+
+    uvicorn.run("fin.api.app:app", host="0.0.0.0", port=8000, reload=True)

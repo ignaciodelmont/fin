@@ -25,3 +25,9 @@ async def load_user(request: Request, call_next):
     request.state.db = client
     response = await call_next(request)
     return response
+
+
+async def log_headers(request: Request, call_next):
+    logger.info(f"Headers: {request.headers}")
+    response = await call_next(request)
+    return response

@@ -18,7 +18,5 @@ by leverageing a a REST (hopefully close to RESTful) API.
 - Better reorg of the project
 - More tests
 - Features:
-  - Add/Remove Labels
-  - Add/Remove Labels on Transactions
   - Use an openapi to suggest Labels on Transactions
   - Create login page and move away from the hardcoded top-level header
