@@ -22,3 +22,18 @@ document.addEventListener('htmx:configRequest', (event) => {
     }
 });
 
+
+
+
+function setStartDate() {
+    now = new Date();
+    year = now.getFullYear();
+    month = (now.getMonth() + 1).toString().padStart(2, "0");
+    firstDay = "01";
+    
+    outerElement = document.getElementById("start-date");
+    innerElement = document.getElementById("start-date-input");
+
+    innerElement.value = year + "/" + month + "/" + firstDay;
+    outerElement.value = year + "-" + month + "-" + firstDay;
+}

@@ -14,13 +14,6 @@
     <script src="/static/scripts/htmxExtras.js"></script>
   </head>
   <body hx-headers='{"x-user": "ignaciodelmont@gmail.com"}' class="font-mono">
-    <div class="grid grid-cols-12 justify-center">
-      <div class="col-span-3">
-	{% include "actions.html" %}
-	</div>
-      <div class="col-span-9">
-	{% include "transactions-page.html" %}
-      </div>
-    </div>
+    {% include "transactions-page.html" %}
   </body>
 <html/>
