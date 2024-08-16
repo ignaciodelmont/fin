@@ -6,7 +6,7 @@
     <div class="flex pb-2 justify-center">
       <form class="flex flex-row m-5" id="filter-form"  hx-get="/transactions" hx-target="#transactions" hx-trigger="submit, transactionAdded from:body, transactionDeleted from:body">
 	<div class="mr-2 flex flex-row">
-	  <cds-date-picker id="start-date" name="start-date" value="" x-value="data" x-init="setStartDate()" date-format="Y/m/d">
+	  <cds-date-picker id="start-date" name="start_date" value="" x-value="data" x-init="setStartDate()" date-format="Y/m/d">
 	    <cds-date-picker-input
 	      id="start-date-input"
 	      kind="from"
@@ -15,7 +15,7 @@
 	      size="lg">
 	    </cds-date-picker-input>
 	  </cds-date-picker>
-	  <cds-date-picker id="end-date" name="end-date" value="" date-format="Y/m/d">
+	  <cds-date-picker id="end-date" name="end_date" value="" date-format="Y/m/d">
 	    <cds-date-picker-input
 	      id="end-date-input"
 	      kind="from"

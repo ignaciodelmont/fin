@@ -123,5 +123,4 @@ async def labels(request: Request):
 
 def serve():
     import uvicorn
-
-    uvicorn.run("fin.api.app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("fin.api.main:app", host="0.0.0.0", port=8000, reload=True)
